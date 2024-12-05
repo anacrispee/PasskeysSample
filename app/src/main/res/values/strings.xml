@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">PasskeysSample</string>
+    <string name="username">Nome de usuário</string>
+    <string name="password">Senha</string>
+    <string name="signin">Entrar</string>
+    <string name="sign_out">Sair</string>
 </resources>

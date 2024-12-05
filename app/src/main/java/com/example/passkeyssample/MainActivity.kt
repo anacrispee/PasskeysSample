@@ -8,14 +8,14 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.passkeyssample.AppConstants.HOME_SCREEN
+import com.example.passkeyssample.AppConstants.LOGIN_SCREEN
 import com.example.passkeyssample.ui.home.HomeScreen
 import com.example.passkeyssample.ui.login.LoginScreen
 import com.example.passkeyssample.ui.theme.PasskeysSampleTheme
@@ -28,7 +28,6 @@ class MainActivity : ComponentActivity() {
             PasskeysSampleTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     val navController = rememberNavController()
-
                     NavHost(
                         navController = navController,
                         innerPadding = innerPadding
@@ -45,17 +44,16 @@ class MainActivity : ComponentActivity() {
     ) {
         NavHost(
             navController = navController,
-            startDestination = "loginScreen",
+            startDestination = LOGIN_SCREEN,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable("loginScreen") {
+            composable(route = LOGIN_SCREEN) {
                 LoginScreen(
                     paddingValues = innerPadding,
                     navController = navController
                 )
             }
-
-            composable("homeScreen") {
+            composable(route = HOME_SCREEN) {
                 HomeScreen(
                     paddingValues = innerPadding,
                     navController = navController

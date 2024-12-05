@@ -13,9 +13,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.passkeyssample.AppConstants.LOGIN_SCREEN
+import com.example.passkeyssample.R
 
 @Composable
 fun HomeScreen(
@@ -35,10 +38,10 @@ fun HomeScreen(
         Spacer(modifier = Modifier.height(16.dp))
         Button(
             onClick = {
-                navController.navigate("loginScreen")
+                navController.navigate(LOGIN_SCREEN)
             }
         ) {
-            Text("Voltar para o login")
+            Text(stringResource(id = R.string.sign_out))
         }
     }
 }

@@ -22,12 +22,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
+import com.example.passkeyssample.AppConstants.HOME_SCREEN
 import com.example.passkeyssample.R
 import kotlinx.coroutines.launch
 
@@ -40,7 +42,10 @@ fun LoginScreen(
     val context = LocalContext.current
 
     LaunchedEffect(true) {
-        viewModel.showSavedCredentials(context)
+        viewModel.showSavedCredentials(
+            context = context,
+            navController = navController
+        )
     }
 
     Column(
@@ -52,14 +57,14 @@ fun LoginScreen(
     ) {
         var username by remember { mutableStateOf("") }
         var password by remember { mutableStateOf("") }
-        var passwordVisible by remember { mutableStateOf(false) }
+        var isPasswordHide by remember { mutableStateOf(true) }
 
         TextField(
             value = username,
             onValueChange = {
                 username = it
             },
-            label = { Text("Username") }
+            label = { Text(stringResource(R.string.username)) }
         )
         Spacer(modifier = Modifier.height(16.dp))
         TextField(
@@ -67,17 +72,17 @@ fun LoginScreen(
             onValueChange = {
                 password = it
             },
-            label = { Text("Password") },
-            visualTransformation = if (passwordVisible) PasswordVisualTransformation() else VisualTransformation.None,
+            label = { Text(stringResource(R.string.password)) },
+            visualTransformation = if (isPasswordHide) PasswordVisualTransformation() else VisualTransformation.None,
             trailingIcon = {
                 IconButton(
                     onClick = {
-                        passwordVisible = passwordVisible.not()
+                        isPasswordHide = isPasswordHide.not()
                     }
                 ) {
                     Icon(
-                        painter = if (passwordVisible) painterResource(id = R.drawable.ic_visibility)
-                        else painterResource(id = R.drawable.ic_visibility_off),
+                        painter = if (isPasswordHide) painterResource(id = R.drawable.ic_visibility_off)
+                        else painterResource(id = R.drawable.ic_visibility),
                         contentDescription = null
                     )
                 }
@@ -93,9 +98,11 @@ fun LoginScreen(
                         password = password
                     )
                 }
-            }
+                navController.navigate(HOME_SCREEN)
+            },
+            enabled = username.isNotBlank() && password.isNotBlank()
         ) {
-            Text("Login")
+            Text(stringResource(R.string.signin))
         }
     }
 }
