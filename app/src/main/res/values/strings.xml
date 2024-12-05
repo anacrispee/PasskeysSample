@@ -3,5 +3,6 @@
     <string name="username">Nome de usuário</string>
     <string name="password">Senha</string>
     <string name="signin">Entrar</string>
+    <string name="welcome">Bem-vindo! Você está logado.</string>
     <string name="sign_out">Sair</string>
 </resources>

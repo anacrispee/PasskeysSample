@@ -32,9 +32,7 @@ fun HomeScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text("Home Screen")
-        Spacer(modifier = Modifier.height(16.dp))
-        Text("Você está logado!")
+        Text(stringResource(id = R.string.welcome))
         Spacer(modifier = Modifier.height(16.dp))
         Button(
             onClick = {
